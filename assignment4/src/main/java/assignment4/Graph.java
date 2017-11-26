@@ -1,6 +1,6 @@
 package assignment4;
-//import assignment4.Graph.Vertex;
 import java.util.Vector;
+import java.util.PriorityQueue;
 
 public class Graph{
     static Vector<Vertex> vertices = new Vector<Vertex>();
@@ -11,6 +11,8 @@ public class Graph{
     }
 
     static public String sameLine(int VertexId){
+        inputData.renewData();
+
         String out ="";
         boolean isFirst = true;
         int numOfWalkIntersections = 0;
@@ -20,43 +22,57 @@ public class Graph{
         for(Edge e:root.getEdgesOut()){if(e.getTime()==-1){numOfWalkIntersections++;}}//count the number of walking crossections
 
         for (Edge e:root.getEdgesOut()){
+            //System.out.println(e.getFinish().getName());
             if (e.getTime()!=-1){
+                root.setIsVisited(true);
                 String temp = Graph.sameLine(e.getFinish(),root,isFirst);
-                out = temp + out;
-                if (isFirst){
-                    isFirst = false; 
-                    if ((root.getEdgesOut().size()==1)||((root.getEdgesOut().size()!=1)&&(numOfWalkIntersections==root.getEdgesOut().size()-1))){
-                        out="root"+root.getName()+"last"+out;//change me
-                    }
-                    else{
-                        out=" <- root "+root.getName()+" root <- "+out;//change me
-                    }
-                }
+                
+                //System.out.println(temp);
+                out += temp;
+                if (isFirst){isFirst=false;out+=" -> root "+root.getName()+" root <- ";}
             }
         }
 
         return out;
     }
+
+
     static private String sameLine(Vertex currentVertex,Vertex previousVertex,boolean isFirst){
         String out ="";
         int numOfWalkIntersections = 0;
 
-        for (Edge e :currentVertex.getEdgesOut()){ if (e.getTime()==-1){numOfWalkIntersections++;}}//find the number of walking crossections
+        for (Edge e :currentVertex.getEdgesOut()){ 
+            if (e.getTime()==-1){numOfWalkIntersections++;}
+          
+        }//find the number of walking crossections
         
-        if ((currentVertex.getEdgesOut().size()==1)||((currentVertex.getEdgesOut().size()!=1)&&(numOfWalkIntersections==currentVertex.getEdgesOut().size()-1))){
-            return currentVertex.getName()+"last";}//bottom condition//change me
-        else{
+        
+        out +=" "+currentVertex.getName();
+        
+            currentVertex.setIsVisited(true);
             for (Edge e:currentVertex.getEdgesOut()){
-                if ((e.getFinish()!=previousVertex)&&(e.getTime()!=-1)){
-                    if (isFirst){
-                        out = currentVertex.getName()+" <- "+sameLine(e.getFinish(),currentVertex,isFirst);
-                    }
-                    else{
-                        out = sameLine(e.getFinish(),currentVertex,isFirst) +" -> "+ currentVertex.getName();//chamge me
-                    }
+                if ((e.getFinish()!=previousVertex)&&(e.getTime()!=-1)&&(!e.getFinish().getIsVisited())){
+                    
+                    if (isFirst){out=sameLine(e.getFinish(),currentVertex,isFirst)+" -> "+out;}
+                    else{out+=" <- "+sameLine(e.getFinish(),currentVertex,isFirst);}
                 }
             }
-        }
-        return out;
+           // System.out.println(out+currentVertex.getName());
+            return out;
+       // }
+       
+    }
+   
+
+    public void shortestPath(int id1,int id2){
+        PriorityQueue<Vertex> minQueue = new PriorityQueue<Vertex>();
+        Vertex start = verticesArr[id1];
+        Vertex finish = verticesArr[id2];
+        
+        start.setTimeToGethere(0);
+        minQueue.add(start);
+        
+
+        
     }
 }
