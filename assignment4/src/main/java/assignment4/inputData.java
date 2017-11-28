@@ -140,7 +140,7 @@ public class inputData{
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(149)));
         */
-         //7th extra line passed ???
+         //7th extra line loop
         /*
         System.out.println("Line 7extra:");
         System.out.println("1st end");
@@ -171,7 +171,7 @@ public class inputData{
         System.out.println(Graph.toString(Graph.sameLine(291)));
         */
          //10th line LOOPS
-       // /*
+        /*
         System.out.println("Line 10:");
         System.out.println("1st end");
         System.out.println(Graph.toString(Graph.sameLine(37)));
@@ -179,7 +179,7 @@ public class inputData{
         System.out.println(Graph.toString(Graph.sameLine(117)));
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(201)));
-      //  */
+        */
          //11th line passed
         /*
         System.out.println("Line 11:");
