@@ -59,7 +59,7 @@ public class inputData{
         catch (FileNotFoundException e){
             System.out.println("It's not the file you're looking for.");
         }
-
+        /*
         //System.out.println(Graph.sameLine(11));
         System.out.println();
         System.out.println(Graph.sameLine(12));
@@ -73,7 +73,182 @@ public class inputData{
         for (Vertex aLine : line) {
             System.out.println(aLine.getName());
         }
+        */
+        /*
+        //System.out.println(Graph.sameLine(11));
+        System.out.println();
+        System.out.println(Graph.sameLine(12));
+        System.out.println();
+        System.out.println(Graph.sameLine(28));
+        System.out.println();
+        System.out.println(Graph.sameLine(363));
+        System.out.println();
 
+        Vector<Vertex> line = Graph.getLine(196);
+        for (Vertex aLine : line) {
+            System.out.println(aLine.getName());
+        }
+        */
+         //1st line PASSED
+       /*
+        System.out.println("Line 1:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(66)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(130)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(119)));
+        */
+        //2nd line PASSED
+        /*
+        System.out.println("Line 2:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(256)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(213)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(239)));
+        */ 
+        //3rd line  PASSED
+        /*
+        System.out.println("Line 3:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(251)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(114)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(38)));
+        */
+        //3rd extra line PASSED
+        /*
+        System.out.println("Line 3extra:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(116)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(279)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(233)));
+        */
+         //4th line PASSED
+        /*
+        System.out.println("Line 4:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(268)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(262)));//??
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(342)));
+        */
+         //5th line PASSED
+        /*
+        System.out.println("Line 5:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(28)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(242)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(134)));
+        */
+         //6th line PASSED
+        /*
+        System.out.println("Line 6:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(57)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(214)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(23)));
+        */
+         //7th line passed
+       /*
+        System.out.println("Line 7:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(152)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(363)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(149)));
+        */
+         //7th extra line FAILED
+        /*
+        System.out.println("Line 7extra:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(170)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(280)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(31)));
+        */
+         //8th line PASSED
+        /*
+        System.out.println("Line 8:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(240)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(89)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(225)));
+        */
+        //9th line PASSED
+        /*
+        System.out.println("Line 9:");
+        System.out.println("1st end");
+        System.out.println((Graph.sameLine(253)));
+        System.out.println("2nd end");
+        System.out.println((Graph.sameLine(181)));
+        System.out.println("middle");
+        System.out.println((Graph.sameLine(291)));
+       */
+         //10th line LOOPS FAILED 
+       /*
+       System.out.println("Line 10:");
+       System.out.println("1st end");
+       System.out.println((Graph.sameLine(37)));
+       System.out.println("2nd end");
+       System.out.println((Graph.sameLine(117)));
+       System.out.println("middle");
+       System.out.println((Graph.sameLine(201)));
+       */
+        //11th line PASSED
+       /*
+       System.out.println("Line 11:");
+       System.out.println("1st end");
+       System.out.println((Graph.sameLine(68)));
+       System.out.println("2nd end");
+       System.out.println((Graph.sameLine(183)));
+       System.out.println("middle");
+       System.out.println((Graph.sameLine(283)));
+      */
+        //12th line PASSED
+       /*
+       System.out.println("Line 12:");
+       System.out.println("1st end");
+       System.out.println((Graph.sameLine(276)));
+       System.out.println("2nd end");
+       System.out.println((Graph.sameLine(178)));
+       System.out.println("middle");
+       System.out.println((Graph.sameLine(325)));
+       */
+        //13th line SPLIT!!! FAILED
+       /*
+       System.out.println("Line 13:");
+       System.out.println("1st end");
+       System.out.println((Graph.sameLine(319)));
+       System.out.println("2nd end");
+       System.out.println((Graph.sameLine(72)));
+       System.out.println("middle");
+        System.out.println((Graph.sameLine(39)));
+       */
+        //14th line PASSED
+       /*
+       System.out.println("Line 14:");
+       System.out.println("1st end");
+       System.out.println((Graph.sameLine(24)));
+       System.out.println("2nd end");
+       System.out.println((Graph.sameLine(176)));
+       System.out.println("middle");
+       System.out.println((Graph.sameLine(22)));
+       */
         
     } 
 }
