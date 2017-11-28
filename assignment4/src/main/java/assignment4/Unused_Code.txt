@@ -1,0 +1,39 @@
+
+
+/*        boolean isLineStart = true;
+
+        for (Edge e:currentStation.getEdgesIn()) {
+            if (e.getTime() != -1) {
+                previousStation = e.getStart();
+                isLineStart = false;
+                break;
+            }
+        }
+
+        if (!isLineStart) {
+            tempStack.push(previousStation);
+        } else {
+            return tempStack;
+        }
+
+
+                Vertex nextStation = null;
+
+                for (Edge e:currentStation.getEdgesOut()) {
+                    if (e.getTime() != -1) {
+                        nextStation = e.getFinish();
+                        break;
+                    }
+                }
+
+                if (nextStation != null) {
+                    tempVector.add(nextStation);
+                }
+
+                if (nextStation != null) {
+                    return getComingUp(nextStation);
+                } else {
+                    return tempVector;
+                }
+
+*/

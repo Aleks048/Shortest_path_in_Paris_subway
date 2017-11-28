@@ -2,14 +2,16 @@ package assignment4;
 
 import java.lang.String;
 import java.io.FileReader;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.util.Vector;
 
 public class inputData{
 
     public static void input() throws FileNotFoundException{
         
-     Scanner inputSc = new Scanner (new FileReader("C:/Users/Aleks048/Downloads/studies_programming/git/all_programming/CSI2110_Algorithms/assignment4/assignment4/src/main/java/assignment4/parisSubway.txt")); 
+     Scanner inputSc = new Scanner (new FileReader("/Users/parami/IdeaProjects/CSI2110_assignment4/assignment4/src/main/java/assignment4/parisSubway.txt"));
      String numOfVertEdg = inputSc.nextLine();
 
      String [] arr= numOfVertEdg.split(" ");
@@ -65,6 +67,13 @@ public class inputData{
         System.out.println(Graph.sameLine(28));
         System.out.println();
         System.out.println(Graph.sameLine(363));
+        System.out.println();
+
+        Vector<Vertex> line = Graph.getLine(196);
+        for (Vertex aLine : line) {
+            System.out.println(aLine.getName());
+        }
+
         
     } 
 }
