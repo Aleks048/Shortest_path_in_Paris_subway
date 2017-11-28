@@ -71,7 +71,7 @@ public class Graph{
     static public Vector<Vertex> getLine (int vertexID) {
 
         Vertex currentStation = verticesArr[vertexID];
-        Vector<Vertex> line = new Vector<>();
+        Vector<Vertex> line = new Vector<Vertex>();
         Vertex nextStation = null, previousStation = null;
 
         for (Edge e:currentStation.getEdgesOut()) {
@@ -84,7 +84,7 @@ public class Graph{
         }
 
         for (Edge e:currentStation.getEdgesIn()) {
-            if (e.getTime() != -1 && e.getFinish() == currentStation && e.getStart() != nextStation) {
+            if ((e.getTime() != -1) && (e.getFinish() == currentStation) && (e.getStart() != nextStation)) {
                 previousStation = e.getStart();
                 break;
             } else {
