@@ -4,6 +4,8 @@ import java.util.Vector;
 import java.util.Comparator;
 
 public class Vertex implements Comparator<Vertex>{
+
+    private boolean isAvailable;
     private String id;
     private String name;
     private int timeToGetHere;
@@ -16,9 +18,10 @@ public class Vertex implements Comparator<Vertex>{
     public Vertex(String id, String name){
         this.name = name;
         this.id = id;
-        timeToGetHere = -1;
+        timeToGetHere = Integer.MAX_VALUE;//just for fun))
         this.visited = false;
         pathToHere=null;
+        isAvailable=true;
     }
 
     //Comparator methods
@@ -30,6 +33,9 @@ public class Vertex implements Comparator<Vertex>{
 
 
     //setters
+    public void setToNotAvailable(){this.isAvailable=false;}
+    public void setToAvailable(){this.isAvailable=true;}
+
     public void setIsVisited(boolean in){this.visited=in;}
     public void setPathToHere(Vector<Vertex> in){pathToHere=in;}
     public void addEdgeIn(Edge in){comingIn.add(in);}
@@ -37,6 +43,7 @@ public class Vertex implements Comparator<Vertex>{
     public void setTimeToGethere(int time){this.timeToGetHere=time;}
 
     //getters
+    public boolean getIsAvilable(){return this.isAvailable;}
     public Vector<Vertex> getPathToHere(){return pathToHere;};
     public boolean getIsVisited(){return visited;};
     public String getId(){return id;}
