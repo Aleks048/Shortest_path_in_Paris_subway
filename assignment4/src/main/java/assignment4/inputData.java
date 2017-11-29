@@ -59,6 +59,8 @@ public class inputData{
     } 
 
     public static void main (String args[]){
+        inputData.renewData();
+
         //line from station ID testing
 
         //1st line PASSED
@@ -221,7 +223,12 @@ public class inputData{
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(22)));
         */
-        Vertex temp = Graph.shortestPath(92, 41);
-        System.out.println(temp.getTimeToGetHere()+Graph.toString(temp.getPathToHere()));
+
+    //Shortest path tests
+    
+        Vector<Vertex> temp = Graph.shortestPath(5, 4);
+        System.out.println(temp.lastElement().getTimeToGetHere()+Graph.toString(temp));
+        Vector<Vertex> tempDisable = Graph.shortestPathLineClosed(5, 4,30);
+        System.out.println(tempDisable.lastElement().getTimeToGetHere()+Graph.toString(tempDisable));
     } 
 }

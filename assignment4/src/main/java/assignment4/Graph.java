@@ -15,7 +15,7 @@ public class Graph{
         Vector<Vertex> line = new Vector<Vertex>();//to accumulate stations
         Vector<Vertex> tempVec = new Vector<Vertex>();
 
-        inputData.renewData();
+      //  inputData.renewData();
 
         Boolean isFirst = true;
 
@@ -34,6 +34,7 @@ public class Graph{
                 tempVec.clear();
             }
         }
+        setAllToUnvisited();
         return line;
     }
 
@@ -65,15 +66,17 @@ public class Graph{
          return "# of stations"+in.size()+"\n"+out;
     }
 
-    public static Vertex shortestPath(int id1,int id2){
-        inputData.renewData();
+    public static Vector <Vertex> shortestPath(int id1,int id2){
+        setAllToUnvisited();
+     //   inputData.renewData();
+
+       // System.out.print("Start: "+verticesArr[id1].getName()+"Finish"+verticesArr[id2].getName());
 
         PriorityQueue<Vertex> minQueue = new PriorityQueue<Vertex>();
         Vector <Vertex> currentPath = new Vector<Vertex>();
         Vertex start = verticesArr[id1];
         int walkingTime=90;
-        
-      //  Vertex finish = verticesArr[id2];
+
         start.setTimeToGethere(0);
         Integer currentTime=start.getTimeToGetHere();
       
@@ -82,29 +85,65 @@ public class Graph{
         int numOfStationsVisited=0;
        
         minQueue.add(start);
-       // start.setIsVisited(true);
 
         while (numOfStationsVisited<vertices.size()){
             current = minQueue.remove();
 
             current.setIsVisited(true);
-            currentPath.add(current);
-            currentTime = current.getTimeToGetHere();
             currentPath = current.getPathToHere();
 
-            System.out.println(current.getName());
+            currentPath.add(current);
+            Graph.toString(currentPath);
+            currentTime = current.getTimeToGetHere();
 
             for (Edge e:current.getEdgesOut()){
-              //  System.out.println(e.getFinish().getName());
-                if (e.getTime()==-1){if((walkingTime+currentTime)<e.getFinish().getTimeToGetHere()){e.getFinish().setTimeToGethere(walkingTime+currentTime);}}
-                else{if((e.getTime()+currentTime)<e.getFinish().getTimeToGetHere()){ e.getFinish().setTimeToGethere(e.getTime()+currentTime);}}
+                if (e.getTime()==-1){
+                    if(((walkingTime+currentTime)<e.getFinish().getTimeToGetHere())&&(e.getFinish().getIsAvilable()))
+                    {
+                        e.getFinish().setTimeToGethere(walkingTime+currentTime);
+                        e.getFinish().setPathToHere(currentPath);
+                    }
+                }
+                else{
+                    if(((e.getTime()+currentTime)<e.getFinish().getTimeToGetHere())&&(e.getFinish().getIsAvilable()))
+                    {
+                        e.getFinish().setTimeToGethere(e.getTime()+currentTime);
+                        e.getFinish().setPathToHere(currentPath);
+                    }
+                }
                 e.getFinish().setPathToHere(currentPath);
                 if(!e.getFinish().getIsVisited()){minQueue.add(e.getFinish());}
             }
                     
             numOfStationsVisited++;
-            if (Integer.parseInt(current.getId())==id2){break;}
+            if (Integer.parseInt(current.getId())==id2){current.setPathToHere(currentPath);break;}
         }
-        return verticesArr[id2];
+
+        setAllToUnvisited();
+
+        return verticesArr[id2].getPathToHere();
+    }
+
+    private static void setAllToUnvisited(){
+        for (Vertex v:vertices){
+            v.setIsVisited(false);
+        }
+    }
+    private static void disableEnableTheLine(Vector<Vertex> in,Boolean disableEnable){
+        for (Vertex v:in){
+            if (disableEnable){v.setToAvailable();}
+            else{v.setToNotAvailable();}
+        }
+    }
+
+    public static Vector<Vertex> shortestPathLineClosed(int id1,int id2, int id3){
+        inputData.renewData();
+        Vector<Vertex> lineToDisable = sameLine(id3);
+        disableEnableTheLine(lineToDisable,false);
+        setAllToUnvisited();
+        Vector <Vertex> out = shortestPath(id1, id2);
+        setAllToUnvisited();
+        disableEnableTheLine(lineToDisable, true);
+        return out;
     }
 }
