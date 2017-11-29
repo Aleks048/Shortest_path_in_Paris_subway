@@ -4,6 +4,7 @@ import java.lang.String;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.util.Vector;
 
 public class inputData{
 
@@ -60,7 +61,7 @@ public class inputData{
     public static void main (String args[]){
         //line from station ID testing
 
-        //1st line passed
+        //1st line PASSED
         /*
         System.out.println("Line 1:");
         System.out.println("1st end");
@@ -69,7 +70,7 @@ public class inputData{
         System.out.println(Graph.toString(Graph.sameLine(130)));
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(119)));
-       // */
+        */
         //2nd line passed
         /*
         System.out.println("Line 2:");
@@ -140,7 +141,7 @@ public class inputData{
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(149)));
         */
-         //7th extra line loop
+         //7th extra line PASSED
         /*
         System.out.println("Line 7extra:");
         System.out.println("1st end");
@@ -170,7 +171,7 @@ public class inputData{
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(291)));
         */
-         //10th line LOOPS
+         //10th line PASSED
         /*
         System.out.println("Line 10:");
         System.out.println("1st end");
@@ -200,7 +201,7 @@ public class inputData{
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(325)));
         */
-         //13th line SPLIT!!!
+         //13th line PASSED
         /*
         System.out.println("Line 13:");
         System.out.println("1st end");
@@ -209,7 +210,7 @@ public class inputData{
         System.out.println(Graph.toString(Graph.sameLine(72)));
         System.out.println("middle");
          System.out.println(Graph.toString(Graph.sameLine(39)));
-        */
+       */
          //14th line passed
         /*
         System.out.println("Line 14:");
@@ -220,6 +221,7 @@ public class inputData{
         System.out.println("middle");
         System.out.println(Graph.toString(Graph.sameLine(22)));
         */
-        
+        Vertex temp = Graph.shortestPath(92, 41);
+        System.out.println(temp.getTimeToGetHere()+Graph.toString(temp.getPathToHere()));
     } 
 }

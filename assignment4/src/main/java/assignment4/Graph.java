@@ -17,112 +17,94 @@ public class Graph{
 
         inputData.renewData();
 
-        String out ="";
-        boolean isFirst = true;
-        int numOfWalkIntersections = 0;
+        Boolean isFirst = true;
 
         Vertex root = verticesArr[VertexId];
-        
-        for(Edge e:root.getEdgesOut()){if(e.getTime()==-1){numOfWalkIntersections++;}}//count the number of walking crossections
-
+    
         for (Edge e:root.getEdgesOut()){
-            //System.out.println(e.getFinish().getName());
             if (e.getTime()!=-1){
                 root.setIsVisited(true);
-                tempVec.addAll( Graph.sameLine(e.getFinish(),root,isFirst));
-               // String temp = Graph.sameLine(e.getFinish(),root,isFirst);
                 
-                //System.out.println(temp);
+                tempVec= Graph.sameLine(e.getFinish(),tempVec,isFirst);
                 line.addAll(tempVec);
-               // out += temp;
                 if (isFirst){
                     isFirst=false;
                     line.add(root);
-                   // out+=" -> root "+root.getName()+" root <- ";
                 }
+                tempVec.clear();
             }
         }
-
         return line;
     }
 
 
-    static private Vector<Vertex> sameLine(Vertex currentVertex,Vertex previousVertex,boolean isFirst){
-        Vector <Vertex> line = new Vector<Vertex>();
-        Vector <Vertex> temp = new Vector<Vertex>();
+    static private Vector<Vertex> sameLine(Vertex currentVertex,Vector<Vertex>line,Boolean isFirst){
 
-        //String out ="";
-        int numOfWalkIntersections = 0;
-
-        for (Edge e :currentVertex.getEdgesOut()){ 
-            if (e.getTime()==-1){numOfWalkIntersections++;}
-          
-        }//find the number of walking crossections
-        
-        line.add(currentVertex);
-       // out +=" "+currentVertex.getName();
-        
-            currentVertex.setIsVisited(true);
+        currentVertex.setIsVisited(true);
+        if (!isFirst){
+        line.add(currentVertex);}
+        else{line.add(0,currentVertex);}
+       
             for (Edge e:currentVertex.getEdgesOut()){
-                if ((e.getFinish()!=previousVertex)&&(e.getTime()!=-1)&&(!e.getFinish().getIsVisited())){
+                if ((e.getTime()!=-1)&&(!e.getFinish().getIsVisited())){
                     
-                    if (isFirst)
-                    {
-                        
-                        line.addAll(0,sameLine(e.getFinish(),currentVertex,isFirst));//check me!!!
-                       //
-                        //out=sameLine(e.getFinish(),currentVertex,isFirst)+" -> "+out;
-                    }
-                    else{
-                        line.addAll(sameLine(e.getFinish(),currentVertex,isFirst));
-                        //out+=" <- "+sameLine(e.getFinish(),currentVertex,isFirst);
-                    }
+                    sameLine(e.getFinish(),line,isFirst);//check me!!!
                 }
             }
-           // System.out.println(out+currentVertex.getName());
+            
             return line;
-       // }
-       
     }
    
     public static String toString(Vector<Vertex> in){
          String out = "";
          for (Vertex v:in){
              if (v!=in.lastElement()){
-             out+=v.getName()+" -> ";}
+             out+=v.getName()+" - ";}
              else{out+=v.getName();}
          }
-         return out;
+         return "# of stations"+in.size()+"\n"+out;
     }
 
-    public Vector<Vertex> shortestPath(int id1,int id2){
+    public static Vertex shortestPath(int id1,int id2){
+        inputData.renewData();
+
         PriorityQueue<Vertex> minQueue = new PriorityQueue<Vertex>();
-        Stack <Vertex> stack = new Stack<Vertex>();
         Vector <Vertex> currentPath = new Vector<Vertex>();
         Vertex start = verticesArr[id1];
-        Vertex finish = verticesArr[id2];
-        Integer currentTime=start.getTimeToGetHere();
-
-        Vertex current = verticesArr[id1];
-        int numOfStationsVisited=0;
+        int walkingTime=90;
         
+      //  Vertex finish = verticesArr[id2];
         start.setTimeToGethere(0);
-        start.setIsVisited(true);
-       // minQueue.add(start);   
+        Integer currentTime=start.getTimeToGetHere();
+      
+        System.out.print(currentTime);
+        Vertex current = start;
+        int numOfStationsVisited=0;
+       
+        minQueue.add(start);
+       // start.setIsVisited(true);
+
         while (numOfStationsVisited<vertices.size()){
-            currentPath.add(current);
-            for (Edge e:start.getEdgesOut()){
-                e.getFinish().setTimeToGethere(e.getTime()+currentTime);
-                e.getFinish().setPathToHere(currentPath);
-                minQueue.add(e.getFinish());
-              //  stack.push(e.getFinish());
-            }
             current = minQueue.remove();
+
+            current.setIsVisited(true);
+            currentPath.add(current);
             currentTime = current.getTimeToGetHere();
             currentPath = current.getPathToHere();
+
+            System.out.println(current.getName());
+
+            for (Edge e:current.getEdgesOut()){
+              //  System.out.println(e.getFinish().getName());
+                if (e.getTime()==-1){if((walkingTime+currentTime)<e.getFinish().getTimeToGetHere()){e.getFinish().setTimeToGethere(walkingTime+currentTime);}}
+                else{if((e.getTime()+currentTime)<e.getFinish().getTimeToGetHere()){ e.getFinish().setTimeToGethere(e.getTime()+currentTime);}}
+                e.getFinish().setPathToHere(currentPath);
+                if(!e.getFinish().getIsVisited()){minQueue.add(e.getFinish());}
+            }
+                    
             numOfStationsVisited++;
             if (Integer.parseInt(current.getId())==id2){break;}
         }
-        return verticesArr[id2].getPathToHere();
+        return verticesArr[id2];
     }
 }

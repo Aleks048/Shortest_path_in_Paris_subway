@@ -3,7 +3,7 @@ package assignment4;
 import java.util.Vector;
 import java.util.Comparator;
 
-public class Vertex implements Comparator<Vertex>{
+public class Vertex implements Comparable<Vertex>{
 
     private boolean isAvailable;
     private String id;
@@ -20,35 +20,33 @@ public class Vertex implements Comparator<Vertex>{
         this.id = id;
         timeToGetHere = Integer.MAX_VALUE;//just for fun))
         this.visited = false;
-        pathToHere=null;
+        pathToHere=new Vector<Vertex>();
         isAvailable=true;
     }
 
-    //Comparator methods
+    //Comparable methods
 
-    public int compare(Vertex o1,Vertex o2){
-        return o1.getTimeToGetHere()>o2.getTimeToGetHere()?1:(o1.getTimeToGetHere()<o2.getTimeToGetHere()?-1:0);
+    public int compareTo(Vertex o2){
+        return this.getTimeToGetHere()>o2.getTimeToGetHere()?1:(this.getTimeToGetHere()<o2.getTimeToGetHere()?-1:0);
     }
     
-
-
     //setters
     public void setToNotAvailable(){this.isAvailable=false;}
     public void setToAvailable(){this.isAvailable=true;}
 
     public void setIsVisited(boolean in){this.visited=in;}
-    public void setPathToHere(Vector<Vertex> in){pathToHere=in;}
+    public void setPathToHere(Vector<Vertex> in){pathToHere=new Vector<Vertex>(in);}//danger
     public void addEdgeIn(Edge in){comingIn.add(in);}
     public void addEdgeOut(Edge out){goingOut.add(out);}
     public void setTimeToGethere(int time){this.timeToGetHere=time;}
 
     //getters
     public boolean getIsAvilable(){return this.isAvailable;}
-    public Vector<Vertex> getPathToHere(){return pathToHere;};
-    public boolean getIsVisited(){return visited;};
+    public Vector<Vertex> getPathToHere(){return new Vector<Vertex>(pathToHere);}//danger
+    public boolean getIsVisited(){return visited;}
     public String getId(){return id;}
     public String getName(){return name;}
-    public int getTimeToGetHere(){return timeToGetHere;};
+    public int getTimeToGetHere(){return timeToGetHere;}
 
     public Vector<Edge> getEdgesOut(){return goingOut;}
     public Vector<Edge> getEdgesIn(){return comingIn;}
